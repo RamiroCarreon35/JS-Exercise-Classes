@@ -188,8 +188,32 @@ class Airplane {
           + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
           + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
   */
- class Student {
+ class Student extends Instructor {
      
+  constructor(object) {
+
+    super (object)
+
+    this.previousBackground = object.previousBackground;
+    this.className = object.className;
+    this.favSubjects = object.favSubjects;
+
+  }
+
+  ListSubjects() {
+    return `Loving ${this.favSubjects}`;
+  }
+
+  PRAssignment(subject) {
+
+    return `${this.name} has submitted a PR for ${subject}`;
+
+  }
+
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
+
  }
   
   /*
@@ -205,9 +229,21 @@ class Airplane {
           + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
           + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
   */
- class ProjectManager {
-     
- }
+ 
+  class ProjectManager extends Instructor {
+  constructor(attrs) {
+      super(attrs);
+      this.gradClassName = attrs.gradClassName;
+      this.favInstructor = attrs.favInstructor;
+  }
+  standUp(channel) {
+      return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject) {
+      return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
+}
+
   /*
     STRETCH PROBLEM (no tests!)
       - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
@@ -215,6 +251,7 @@ class Airplane {
       - Add a graduate method to a student.
         + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
         + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
+
   */
 
 
